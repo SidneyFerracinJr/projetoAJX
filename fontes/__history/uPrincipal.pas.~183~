@@ -50,11 +50,10 @@ type
     BtnSalvar: TButton;
     Button4: TButton;
     MkEdtOperadora: TMaskEdit;
-    EdtTelefone: TEdit;
+    MkEdtTelefone: TMaskEdit;
     procedure Button3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MkEdtOperadoraKeyPress(Sender: TObject; var Key: Char);
-    procedure MkEdtTelefoneExit(Sender: TObject);
     procedure EdtTelefoneExit(Sender: TObject);
   private
 
@@ -117,7 +116,7 @@ begin
     (*Criar o evento para Deletar elemento*)
 
   MkEdtOperadora.Clear;
-  EdtTelefone.Clear;
+  MkEdtTelefone.Clear;
 
 end;
 
@@ -156,8 +155,19 @@ var
   NTelefone: String;
 
   begin
-    NTelefone := FncSomenteNumeros(EdtTelefone.ToString);
-    ShowMessage(NTelefone);
+    NTelefone := FncSomenteNumeros(MkEdtTelefone.Text);
+
+    if NTelefone <> '' then
+      begin
+
+        if Length(NTelefone) = 10 then
+          FrmPrincipal.MkEdtTelefone.EditMask := '(00) 0000-0000';
+          (* https://www.youtube.com/watch?v=5mTQCarIV9A&ab_channel=SWHSistemas *)
+
+
+
+      end;
+
   end;
 end;
 
