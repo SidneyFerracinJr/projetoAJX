@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/01/13 19:24:21.000.114,=C:\Users\sidne\Documents\AJX\DELPHI\Pasta Padrão de Projeto\Unit1.pas</Transaction>
+    <Transaction>2022/01/13 20:17:28.000.004,C:\Users\sidne\Documents\Proj_AJX\fontes\uPrincipal.pas=C:\Users\sidne\Documents\AJX\DELPHI\Pasta Padrão de Projeto\Unit1.pas</Transaction>
+    <Transaction>2022/01/13 20:17:28.000.004,C:\Users\sidne\Documents\Proj_AJX\fontes\uPrincipal.dfm=C:\Users\sidne\Documents\AJX\DELPHI\Pasta Padrão de Projeto\Unit1.dfm</Transaction>
+    <Transaction>2022/01/13 20:17:55.000.960,C:\Users\sidne\Documents\Proj_AJX\Clientes.dproj=C:\Users\sidne\Documents\AJX\DELPHI\Pasta Padrão de Projeto\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
