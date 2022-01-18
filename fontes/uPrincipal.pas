@@ -47,14 +47,18 @@ type
     CardPanel1: TCardPanel;
     CardPanel2: TCardPanel;
     ImageList1: TImageList;
-    BtnSalvar: TButton;
     Button4: TButton;
+    GrdPnlTelefone: TGridPanel;
     MkEdtOperadora: TMaskEdit;
+    BtnSalvar: TButton;
     MkEdtTelefone: TMaskEdit;
+    nmrTelefone: TDBEdit;
+    operadora: TDBEdit;
     procedure Button3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MkEdtOperadoraKeyPress(Sender: TObject; var Key: Char);
-    procedure EdtTelefoneExit(Sender: TObject);
+    procedure MkEdtTelefoneExit(Sender: TObject);
+    procedure MkEdtTelefoneEnter(Sender: TObject);
   private
 
   public
@@ -71,7 +75,11 @@ implementation
 {$R *.dfm}
 
 
-
+procedure TFrmPrincipal.FormCreate(Sender: TObject);
+begin
+  Count := 0;
+  TopPos := 33;
+end;
 
 procedure TFrmPrincipal.Button3Click(Sender: TObject);
 
@@ -91,48 +99,37 @@ begin
     TopPos := TopPos + 30;
     Inc(Count);
 
-  Operadora := TButton.Create(self);
-    Operadora.Parent := FrmPrincipal.PnlCadCliente;
-    Operadora.Left := 6;
-    Operadora.Top := TopPos;
-    Operadora.Width := 69;
-    Operadora.Caption := TButton(FindComponent('MkEdtOperadora')).Caption;
-
   Telefone := TButton.Create(self);
-    Telefone.Parent := FrmPrincipal.PnlCadCliente;
-    Telefone.Left := 82;
-    Telefone.Top := TopPos;
+    Telefone.Parent := FrmPrincipal.GrdPnlTelefone;
     Telefone.Width := 100;
     Telefone.Caption := TButton(FindComponent('MkEdtTelefone')).Caption;
 
+  Operadora := TButton.Create(self);
+    Operadora.Parent := FrmPrincipal.GrdPnlTelefone;
+    Operadora.Width := 69;
+    Operadora.Caption := TButton(FindComponent('MkEdtOperadora')).Caption;
+
   Salvar := TButton.Create(self);
-    Salvar.Parent := FrmPrincipal.PnlCadCliente;
-    Salvar.Left := 188;
-    Salvar.Height := 23;
-    Salvar.Width := 23;
-    Salvar.Top := TopPos;
+    Salvar.Parent := FrmPrincipal.GrdPnlTelefone;
     Salvar.Images := ImageList1;
     Salvar.ImageIndex := 0;
     (*Criar o evento para Deletar elemento*)
 
   MkEdtOperadora.Clear;
-  MkEdtTelefone.Clear;
+  //MkEdtTelefone.Clear;
 
 end;
 
-procedure TFrmPrincipal.FormCreate(Sender: TObject);
-begin
-  Count := 0;
-  TopPos := 33;
-end;
 
-
+// máscara da operadora.
 procedure TFrmPrincipal.MkEdtOperadoraKeyPress(Sender: TObject; var Key: Char);
 begin
    if not(key in ['A'..'Z','a'..'z', #8]) then
       Key := #0;
 end;
 
+
+// funcao que retorna somente numeros
 function fncSomenteNumeros(AString: String): String;
 var
   I : Integer;
@@ -149,27 +146,45 @@ begin
   Result := Texto;
 end;
 
-procedure TFrmPrincipal.EdtTelefoneExit(Sender: TObject);
+// mascara do telefone
+procedure TFrmPrincipal.MkEdtTelefoneEnter(Sender: TObject);
 begin
-var
-  NTelefone: String;
-
-  begin
-    NTelefone := FncSomenteNumeros(MkEdtTelefone.Text);
-
-    if NTelefone <> '' then
-      begin
-
-        if Length(NTelefone) = 10 then
-          FrmPrincipal.MkEdtTelefone.EditMask := '(00) 0000-0000';
-          (* https://www.youtube.com/watch?v=5mTQCarIV9A&ab_channel=SWHSistemas *)
-
-
-
-      end;
-
-  end;
+  MkEdtTelefone.EditMask := '';
 end;
+
+procedure TFrmPrincipal.MkEdtTelefoneExit(Sender: TObject);
+begin
+
+  if Length(fncSomenteNumeros(MkEdtTelefone.Text)) = 10 then
+  begin
+    MkEdtTelefone.EditMask := '(00)0000-000;0;_';
+    MkEdtOperadora.SetFocus;
+  end
+
+  else
+  if Length(fncSomenteNumeros(MkEdtTelefone.Text)) = 11 then
+  begin
+    MkEdtTelefone.EditMask := '(00)00000-000;0;_';
+    MkEdtOperadora.SetFocus;
+  end
+
+  else
+  if Length(fncSomenteNumeros(MkEdtTelefone.Text)) <> 0 then
+  begin
+    ShowMessage('Número inválido!');
+    MkEdtTelefone.SetFocus;
+    abort;
+  end;
+
+
+
+end;
+
+
+
+
+
+
 
 end.
 

@@ -26,47 +26,153 @@ object FrmPrincipal: TFrmPrincipal
     object TsCadastroEdicao: TTabSheet
       Caption = 'Cadastro/Edi'#231#227'o'
       object PnlCadCliente: TPanel
-        Left = 598
+        Left = 614
         Top = 41
-        Width = 216
+        Width = 200
         Height = 361
         Align = alRight
         TabOrder = 0
-        object BtnSalvar: TButton
-          Left = 188
-          Top = 6
-          Width = 23
-          Height = 21
-          ImageIndex = 1
-          Images = ImageList1
-          TabOrder = 1
-          OnClick = Button3Click
-        end
-        object MkEdtOperadora: TMaskEdit
-          Left = 6
-          Top = 6
-          Width = 69
-          Height = 21
-          CharCase = ecUpperCase
+        object GrdPnlTelefone: TGridPanel
+          Left = 1
+          Top = 1
+          Width = 198
+          Height = 359
+          Align = alClient
+          ColumnCollection = <
+            item
+              Value = 48.687210354405000000
+            end
+            item
+              Value = 39.584417203808610000
+            end
+            item
+              Value = 11.728372441786370000
+            end>
+          ControlCollection = <
+            item
+              Column = 1
+              Control = MkEdtOperadora
+              Row = 0
+            end
+            item
+              Column = 2
+              Control = BtnSalvar
+              Row = 0
+            end
+            item
+              Column = 0
+              Control = MkEdtTelefone
+              Row = 0
+            end
+            item
+              Column = 0
+              Control = nmrTelefone
+              Row = 1
+            end
+            item
+              Column = 1
+              Control = operadora
+              Row = 1
+            end>
+          RowCollection = <
+            item
+              Value = 8.943377568129467000
+            end
+            item
+              Value = 9.117133731483401000
+            end
+            item
+              Value = 9.296569515108878000
+            end
+            item
+              Value = 9.482063039173966000
+            end
+            item
+              Value = 9.674027154585636000
+            end
+            item
+              Value = 9.872912866098464000
+            end
+            item
+              Value = 8.681254623928204000
+            end
+            item
+              Value = 8.755712508246626000
+            end
+            item
+              Value = 8.824733902118936000
+            end
+            item
+              Value = 8.887566060076828000
+            end
+            item
+              Value = 8.464649031049586000
+            end>
           TabOrder = 0
-          Text = ''
-          TextHint = 'Operadora'
-          OnKeyPress = MkEdtOperadoraKeyPress
-        end
-        object MkEdtTelefone: TMaskEdit
-          Left = 81
-          Top = 6
-          Width = 100
-          Height = 21
-          TabOrder = 2
-          Text = ''
-          TextHint = 'Telefone'
+          DesignSize = (
+            198
+            359)
+          object MkEdtOperadora: TMaskEdit
+            Left = 100
+            Top = 6
+            Width = 70
+            Height = 21
+            Anchors = []
+            CharCase = ecUpperCase
+            TabOrder = 1
+            Text = ''
+            TextHint = 'Operadora'
+            OnKeyPress = MkEdtOperadoraKeyPress
+          end
+          object BtnSalvar: TButton
+            Left = 174
+            Top = 5
+            Width = 23
+            Height = 23
+            Anchors = []
+            ImageIndex = 1
+            Images = ImageList1
+            TabOrder = 2
+            OnClick = Button3Click
+          end
+          object MkEdtTelefone: TMaskEdit
+            Left = 3
+            Top = 6
+            Width = 90
+            Height = 21
+            Anchors = []
+            TabOrder = 0
+            Text = ''
+            TextHint = 'Telefone'
+            OnEnter = MkEdtTelefoneEnter
+            OnExit = MkEdtTelefoneExit
+          end
+          object nmrTelefone: TDBEdit
+            Left = 1
+            Top = 38
+            Width = 95
+            Height = 21
+            Anchors = []
+            TabOrder = 3
+            ExplicitLeft = 40
+            ExplicitTop = 168
+          end
+          object operadora: TDBEdit
+            Left = 96
+            Top = 38
+            Width = 78
+            Height = 21
+            Anchors = []
+            TabOrder = 4
+            ExplicitLeft = 40
+            ExplicitTop = 168
+          end
         end
       end
       object PnlCadastro: TPanel
         Left = 0
         Top = 41
-        Width = 598
+        Width = 614
         Height = 361
         Align = alClient
         TabOrder = 1
