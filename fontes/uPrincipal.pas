@@ -46,14 +46,14 @@ type
     PnlEdtCadastroCliente: TPanel;
     CardPanel1: TCardPanel;
     CardPanel2: TCardPanel;
-    ImageList1: TImageList;
+    ImageList: TImageList;
     Button4: TButton;
     GrdPnlTelefone: TGridPanel;
-    MkEdtOperadora: TMaskEdit;
     BtnSalvar: TButton;
     MkEdtTelefone: TMaskEdit;
-    nmrTelefone: TDBEdit;
-    operadora: TDBEdit;
+    DtSrcOperadora: TDataSource;
+    DtSrcCliente_Telefone: TDataSource;
+    CbBoxOperadora: TComboBox;
     procedure Button3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MkEdtOperadoraKeyPress(Sender: TObject; var Key: Char);
@@ -73,6 +73,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses uConexaoBD;
 
 
 procedure TFrmPrincipal.FormCreate(Sender: TObject);
@@ -111,11 +113,11 @@ begin
 
   Salvar := TButton.Create(self);
     Salvar.Parent := FrmPrincipal.GrdPnlTelefone;
-    Salvar.Images := ImageList1;
+    Salvar.Images := ImageList;
     Salvar.ImageIndex := 0;
     (*Criar o evento para Deletar elemento*)
 
-  MkEdtOperadora.Clear;
+
   //MkEdtTelefone.Clear;
 
 end;
@@ -158,14 +160,14 @@ begin
   if Length(fncSomenteNumeros(MkEdtTelefone.Text)) = 10 then
   begin
     MkEdtTelefone.EditMask := '(00)0000-000;0;_';
-    MkEdtOperadora.SetFocus;
+
   end
 
   else
   if Length(fncSomenteNumeros(MkEdtTelefone.Text)) = 11 then
   begin
     MkEdtTelefone.EditMask := '(00)00000-000;0;_';
-    MkEdtOperadora.SetFocus;
+
   end
 
   else

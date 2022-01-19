@@ -1,0 +1,25 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 258
+  Width = 379
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'Database=ajx'
+      'User_Name=root'
+      'Password=root'
+      'DriverID=MySQL')
+    LoginPrompt = False
+    Left = 40
+    Top = 24
+  end
+  object MySQLDriverLink: TFDPhysMySQLDriverLink
+    VendorLib = 'D:\Documentos\projetoAJX\bd\libmysql.dll'
+    Left = 160
+    Top = 24
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 296
+    Top = 24
+  end
+end

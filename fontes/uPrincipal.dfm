@@ -50,11 +50,6 @@ object FrmPrincipal: TFrmPrincipal
             end>
           ControlCollection = <
             item
-              Column = 1
-              Control = MkEdtOperadora
-              Row = 0
-            end
-            item
               Column = 2
               Control = BtnSalvar
               Row = 0
@@ -65,14 +60,9 @@ object FrmPrincipal: TFrmPrincipal
               Row = 0
             end
             item
-              Column = 0
-              Control = nmrTelefone
-              Row = 1
-            end
-            item
               Column = 1
-              Control = operadora
-              Row = 1
+              Control = CbBoxOperadora
+              Row = 0
             end>
           RowCollection = <
             item
@@ -112,18 +102,6 @@ object FrmPrincipal: TFrmPrincipal
           DesignSize = (
             198
             359)
-          object MkEdtOperadora: TMaskEdit
-            Left = 100
-            Top = 6
-            Width = 70
-            Height = 21
-            Anchors = []
-            CharCase = ecUpperCase
-            TabOrder = 1
-            Text = ''
-            TextHint = 'Operadora'
-            OnKeyPress = MkEdtOperadoraKeyPress
-          end
           object BtnSalvar: TButton
             Left = 174
             Top = 5
@@ -131,8 +109,8 @@ object FrmPrincipal: TFrmPrincipal
             Height = 23
             Anchors = []
             ImageIndex = 1
-            Images = ImageList1
-            TabOrder = 2
+            Images = ImageList
+            TabOrder = 1
             OnClick = Button3Click
           end
           object MkEdtTelefone: TMaskEdit
@@ -147,25 +125,23 @@ object FrmPrincipal: TFrmPrincipal
             OnEnter = MkEdtTelefoneEnter
             OnExit = MkEdtTelefoneExit
           end
-          object nmrTelefone: TDBEdit
-            Left = 1
-            Top = 38
-            Width = 95
-            Height = 21
-            Anchors = []
-            TabOrder = 3
-            ExplicitLeft = 40
-            ExplicitTop = 168
-          end
-          object operadora: TDBEdit
+          object CbBoxOperadora: TComboBox
             Left = 96
-            Top = 38
+            Top = 6
             Width = 78
             Height = 21
             Anchors = []
-            TabOrder = 4
-            ExplicitLeft = 40
-            ExplicitTop = 168
+            TabOrder = 2
+            TextHint = 'Operadora'
+            Items.Strings = (
+              'Algar'
+              'Claro'
+              'Nextel'
+              'Oi'
+              'Porto Seguro'
+              'Sercomtel'
+              'TIM'
+              'Vivo')
           end
         end
       end
@@ -472,7 +448,7 @@ object FrmPrincipal: TFrmPrincipal
       end
     end
   end
-  object ImageList1: TImageList
+  object ImageList: TImageList
     Left = 8
     Top = 24
     Bitmap = {
@@ -614,5 +590,15 @@ object FrmPrincipal: TFrmPrincipal
       8001800100000000800180010000000080018001000000008001800100000000
       8001800100000000800180010000000000000000000000000000000000000000
       000000000000}
+  end
+  object DtSrcOperadora: TDataSource
+    DataSet = DataModule1.QryOperadora
+    Left = 80
+    Top = 24
+  end
+  object DtSrcCliente_Telefone: TDataSource
+    DataSet = DataModule1.QryCliente_Telefone
+    Left = 184
+    Top = 24
   end
 end
