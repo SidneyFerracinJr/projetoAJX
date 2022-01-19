@@ -14,7 +14,7 @@ object DataModule1: TDataModule1
     Top = 24
   end
   object MySQLDriverLink: TFDPhysMySQLDriverLink
-    VendorLib = 'D:\Documentos\projetoAJX\bd\libmysql.dll'
+    VendorLib = 'C:\Users\sidne\Documents\projetoAJX\bd\libmysql.dll'
     Left = 160
     Top = 24
   end
@@ -24,11 +24,18 @@ object DataModule1: TDataModule1
     Top = 24
   end
   object QryOperadora: TFDQuery
+    Active = True
     Connection = FDConnection
     SQL.Strings = (
       'SELECT * FROM ajx.operadora;')
     Left = 40
     Top = 88
+    object QryOperadoraId_Operadora: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'Id_Operadora'
+      Origin = 'Id_Operadora'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
     object QryOperadoraData_Hora: TDateTimeField
       FieldName = 'Data_Hora'
       Origin = 'Data_Hora'

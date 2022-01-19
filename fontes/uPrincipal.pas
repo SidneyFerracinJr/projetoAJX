@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
   Vcl.Buttons, Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.WinXPanels,
-  Vcl.Mask, Vcl.DBCtrls, System.ImageList, Vcl.ImgList;
+  Vcl.Mask, Vcl.DBCtrls, System.ImageList, Vcl.ImgList, Data.FMTBcd,
+  Data.SqlExpr;
 
 type
   TFrmPrincipal = class(TForm)
@@ -54,11 +55,16 @@ type
     DtSrcOperadora: TDataSource;
     DtSrcCliente_Telefone: TDataSource;
     CbBoxOperadora: TComboBox;
+    TesteBD: TTabSheet;
+    DBGrid: TDBGrid;
+    Ativar: TButton;
+    DBEdit: TDBEdit;
     procedure Button3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MkEdtOperadoraKeyPress(Sender: TObject; var Key: Char);
     procedure MkEdtTelefoneExit(Sender: TObject);
     procedure MkEdtTelefoneEnter(Sender: TObject);
+    procedure AtivarClick(Sender: TObject);
   private
 
   public
@@ -81,6 +87,11 @@ procedure TFrmPrincipal.FormCreate(Sender: TObject);
 begin
   Count := 0;
   TopPos := 33;
+end;
+
+procedure TFrmPrincipal.AtivarClick(Sender: TObject);
+begin
+  uConexaoBD.DataModule1.QryOperadora.Active := not uConexaoBD.DataModule1.QryOperadora.Active;
 end;
 
 procedure TFrmPrincipal.Button3Click(Sender: TObject);

@@ -2,8 +2,8 @@ object FrmPrincipal: TFrmPrincipal
   Left = 0
   Top = 0
   Caption = 'Cliente'
-  ClientHeight = 430
-  ClientWidth = 822
+  ClientHeight = 404
+  ClientWidth = 614
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,25 +18,29 @@ object FrmPrincipal: TFrmPrincipal
   object PcPrincipal: TPageControl
     Left = 0
     Top = 0
-    Width = 822
-    Height = 430
-    ActivePage = TsCadastroEdicao
+    Width = 614
+    Height = 404
+    ActivePage = TesteBD
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 822
+    ExplicitHeight = 430
     object TsCadastroEdicao: TTabSheet
       Caption = 'Cadastro/Edi'#231#227'o'
       object PnlCadCliente: TPanel
-        Left = 614
+        Left = 406
         Top = 41
         Width = 200
-        Height = 361
+        Height = 335
         Align = alRight
         TabOrder = 0
+        ExplicitLeft = 614
+        ExplicitHeight = 361
         object GrdPnlTelefone: TGridPanel
           Left = 1
           Top = 1
           Width = 198
-          Height = 359
+          Height = 333
           Align = alClient
           ColumnCollection = <
             item
@@ -99,12 +103,13 @@ object FrmPrincipal: TFrmPrincipal
               Value = 8.464649031049586000
             end>
           TabOrder = 0
+          ExplicitHeight = 359
           DesignSize = (
             198
-            359)
+            333)
           object BtnSalvar: TButton
             Left = 174
-            Top = 5
+            Top = 4
             Width = 23
             Height = 23
             Anchors = []
@@ -112,10 +117,11 @@ object FrmPrincipal: TFrmPrincipal
             Images = ImageList
             TabOrder = 1
             OnClick = Button3Click
+            ExplicitTop = 5
           end
           object MkEdtTelefone: TMaskEdit
             Left = 3
-            Top = 6
+            Top = 5
             Width = 90
             Height = 21
             Anchors = []
@@ -124,10 +130,11 @@ object FrmPrincipal: TFrmPrincipal
             TextHint = 'Telefone'
             OnEnter = MkEdtTelefoneEnter
             OnExit = MkEdtTelefoneExit
+            ExplicitTop = 6
           end
           object CbBoxOperadora: TComboBox
             Left = 96
-            Top = 6
+            Top = 5
             Width = 78
             Height = 21
             Anchors = []
@@ -142,16 +149,19 @@ object FrmPrincipal: TFrmPrincipal
               'Sercomtel'
               'TIM'
               'Vivo')
+            ExplicitTop = 6
           end
         end
       end
       object PnlCadastro: TPanel
         Left = 0
         Top = 41
-        Width = 614
-        Height = 361
+        Width = 406
+        Height = 335
         Align = alClient
         TabOrder = 1
+        ExplicitWidth = 614
+        ExplicitHeight = 361
         object PnlEdtCadastroCliente: TPanel
           Left = 136
           Top = 6
@@ -231,7 +241,7 @@ object FrmPrincipal: TFrmPrincipal
       object PnlCadastroCliente: TPanel
         Left = 0
         Top = 0
-        Width = 814
+        Width = 606
         Height = 41
         Align = alTop
         Caption = 'Cadastro de Cliente'
@@ -242,6 +252,7 @@ object FrmPrincipal: TFrmPrincipal
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 2
+        ExplicitWidth = 814
       end
     end
     object tsConsulta: TTabSheet
@@ -250,7 +261,7 @@ object FrmPrincipal: TFrmPrincipal
       object Panel4: TPanel
         Left = 0
         Top = 0
-        Width = 814
+        Width = 606
         Height = 41
         Align = alTop
         Caption = 'Consulta de Cliente'
@@ -261,14 +272,17 @@ object FrmPrincipal: TFrmPrincipal
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
+        ExplicitWidth = 814
       end
       object Panel5: TPanel
-        Left = 601
+        Left = 393
         Top = 41
         Width = 213
-        Height = 361
+        Height = 335
         Align = alRight
         TabOrder = 1
+        ExplicitLeft = 601
+        ExplicitHeight = 361
         object SpeedButton1: TSpeedButton
           Left = 178
           Top = 6
@@ -445,6 +459,58 @@ object FrmPrincipal: TFrmPrincipal
         Height = 25
         Caption = 'Button4'
         TabOrder = 6
+      end
+    end
+    object TesteBD: TTabSheet
+      Caption = 'TesteBD'
+      ImageIndex = 2
+      object DBGrid: TDBGrid
+        Left = 0
+        Top = 256
+        Width = 606
+        Height = 120
+        Align = alBottom
+        DataSource = DtSrcOperadora
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'Id_Operadora'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'Data_Hora'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'Operadora'
+            Visible = True
+          end>
+      end
+      object Ativar: TButton
+        Left = 264
+        Top = 176
+        Width = 75
+        Height = 25
+        Caption = 'Ativar'
+        TabOrder = 1
+        OnClick = AtivarClick
+      end
+      object DBEdit: TDBEdit
+        Left = 32
+        Top = 216
+        Width = 121
+        Height = 21
+        DataField = 'Operadora'
+        DataSource = DtSrcOperadora
+        TabOrder = 2
       end
     end
   end

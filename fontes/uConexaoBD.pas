@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQLDef,
   FireDAC.VCLUI.Wait, FireDAC.Comp.UI, FireDAC.Phys.MySQL, Data.DB,
   FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
-  FireDAC.DApt, FireDAC.Comp.DataSet;
+  FireDAC.DApt, FireDAC.Comp.DataSet, Data.DBXMySQL, Data.FMTBcd, Data.SqlExpr;
 
 type
   TDataModule1 = class(TDataModule)
@@ -31,6 +31,7 @@ type
     QryCliente_TelefoneOperadoraID: TIntegerField;
     QryCliente_TelefoneTelefone: TIntegerField;
     QryCliente_TelefoneRemovido: TStringField;
+    QryOperadoraId_Operadora: TIntegerField;
   private
     { Private declarations }
   public
