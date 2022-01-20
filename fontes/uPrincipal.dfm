@@ -1,9 +1,9 @@
-object FrmPrincipal: TFrmPrincipal
+object Principal: TPrincipal
   Left = 0
   Top = 0
   Caption = 'Cliente'
-  ClientHeight = 404
-  ClientWidth = 614
+  ClientHeight = 600
+  ClientWidth = 824
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,29 +18,25 @@ object FrmPrincipal: TFrmPrincipal
   object PcPrincipal: TPageControl
     Left = 0
     Top = 0
-    Width = 614
-    Height = 404
-    ActivePage = TesteBD
+    Width = 824
+    Height = 600
+    ActivePage = TsCadastroEdicao
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 822
-    ExplicitHeight = 430
     object TsCadastroEdicao: TTabSheet
       Caption = 'Cadastro/Edi'#231#227'o'
-      object PnlCadCliente: TPanel
-        Left = 406
+      object CadPnlTelefone: TPanel
+        Left = 616
         Top = 41
         Width = 200
-        Height = 335
+        Height = 531
         Align = alRight
         TabOrder = 0
-        ExplicitLeft = 614
-        ExplicitHeight = 361
-        object GrdPnlTelefone: TGridPanel
+        object CadGrdPnlTelefone: TGridPanel
           Left = 1
           Top = 1
           Width = 198
-          Height = 333
+          Height = 529
           Align = alClient
           ColumnCollection = <
             item
@@ -55,17 +51,17 @@ object FrmPrincipal: TFrmPrincipal
           ControlCollection = <
             item
               Column = 2
-              Control = BtnSalvar
+              Control = CadBtnSalvarTelefone
               Row = 0
             end
             item
               Column = 0
-              Control = MkEdtTelefone
+              Control = CadMkEdtTelefone
               Row = 0
             end
             item
               Column = 1
-              Control = CbBoxOperadora
+              Control = CadCbBoxOperadora
               Row = 0
             end>
           RowCollection = <
@@ -103,42 +99,42 @@ object FrmPrincipal: TFrmPrincipal
               Value = 8.464649031049586000
             end>
           TabOrder = 0
-          ExplicitHeight = 359
           DesignSize = (
             198
-            333)
-          object BtnSalvar: TButton
+            529)
+          object CadBtnSalvarTelefone: TButton
             Left = 174
-            Top = 4
+            Top = 13
             Width = 23
             Height = 23
             Anchors = []
+            Enabled = False
             ImageIndex = 1
             Images = ImageList
-            TabOrder = 1
-            OnClick = Button3Click
-            ExplicitTop = 5
+            TabOrder = 2
+            OnClick = CadBtnSalvarTelefoneClick
           end
-          object MkEdtTelefone: TMaskEdit
+          object CadMkEdtTelefone: TMaskEdit
             Left = 3
-            Top = 5
+            Top = 14
             Width = 90
             Height = 21
             Anchors = []
+            Enabled = False
             TabOrder = 0
             Text = ''
             TextHint = 'Telefone'
-            OnEnter = MkEdtTelefoneEnter
-            OnExit = MkEdtTelefoneExit
-            ExplicitTop = 6
+            OnEnter = CadMkEdtTelefoneEnter
+            OnExit = CadMkEdtTelefoneExit
           end
-          object CbBoxOperadora: TComboBox
+          object CadCbBoxOperadora: TComboBox
             Left = 96
-            Top = 5
+            Top = 14
             Width = 78
             Height = 21
             Anchors = []
-            TabOrder = 2
+            Enabled = False
+            TabOrder = 1
             TextHint = 'Operadora'
             Items.Strings = (
               'Algar'
@@ -149,99 +145,174 @@ object FrmPrincipal: TFrmPrincipal
               'Sercomtel'
               'TIM'
               'Vivo')
-            ExplicitTop = 6
           end
         end
       end
-      object PnlCadastro: TPanel
+      object CadPnlPrincipal: TPanel
         Left = 0
         Top = 41
-        Width = 406
-        Height = 335
+        Width = 616
+        Height = 531
         Align = alClient
         TabOrder = 1
-        ExplicitWidth = 614
-        ExplicitHeight = 361
-        object PnlEdtCadastroCliente: TPanel
+        ExplicitLeft = -2
+        object CadPnlForm: TPanel
           Left = 136
-          Top = 6
+          Top = 64
           Width = 355
-          Height = 347
+          Height = 217
           Color = clSkyBlue
           ParentBackground = False
           TabOrder = 0
-          object LblCPF: TLabel
-            Left = 45
-            Top = 124
-            Width = 23
+          object CadLblNome: TLabel
+            Left = 46
+            Top = 32
+            Width = 27
             Height = 13
-            Caption = 'CPF:'
+            Caption = 'Nome'
+            FocusControl = CadDBEdtNome
           end
-          object LblEmail: TLabel
+          object CadLblCPF: TLabel
+            Left = 45
+            Top = 126
+            Width = 19
+            Height = 13
+            Caption = 'CPF'
+            FocusControl = CadDBEdtCPF
+          end
+          object CadLblEmail: TLabel
             Left = 45
             Top = 78
-            Width = 28
+            Width = 24
             Height = 13
-            Caption = 'Email:'
+            Caption = 'Email'
+            FocusControl = CadDBEdtEmail
           end
-          object LblNascimento: TLabel
+          object CadLblDataNascimento: TLabel
             Left = 175
-            Top = 124
-            Width = 100
+            Top = 126
+            Width = 96
             Height = 13
-            Caption = 'Data de Nascimento:'
+            Caption = 'Data de Nascimento'
+            FocusControl = CadDBEdtDataNascimento
           end
-          object LblNome: TLabel
-            Left = 45
-            Top = 32
-            Width = 31
+          object CadLblDataHora: TLabel
+            Left = 12
+            Top = 8
+            Width = 52
             Height = 13
-            Caption = 'Nome:'
+            Caption = 'Data_Hora'
+            FocusControl = CadDBEdtDataHora
+            Visible = False
           end
-          object EdtCPF: TEdit
-            Left = 45
-            Top = 143
-            Width = 124
-            Height = 21
-            TabOrder = 2
+          object CadLblRemovido: TLabel
+            Left = 203
+            Top = 8
+            Width = 47
+            Height = 13
+            Caption = 'Removido'
+            FocusControl = CadDBEdtRemovido
+            Visible = False
           end
-          object EdtEmail: TEdit
-            Left = 45
-            Top = 97
-            Width = 236
-            Height = 21
-            TabOrder = 1
-            TextHint = 'Email do cliente'
-          end
-          object EdtNascimento: TEdit
-            Left = 175
-            Top = 143
-            Width = 106
-            Height = 21
-            TabOrder = 3
-          end
-          object EdtNome: TEdit
+          object CadDBEdtNome: TDBEdit
             Left = 45
             Top = 51
             Width = 236
             Height = 21
+            DataField = 'Nome'
+            DataSource = DtSrcCliente
+            Enabled = False
             TabOrder = 0
-            TextHint = 'Nome do cliente'
+          end
+          object CadDBEdtCPF: TDBEdit
+            Left = 46
+            Top = 145
+            Width = 123
+            Height = 21
+            DataField = 'CPF'
+            DataSource = DtSrcCliente
+            Enabled = False
+            TabOrder = 2
+          end
+          object CadDBEdtEmail: TDBEdit
+            Left = 45
+            Top = 99
+            Width = 236
+            Height = 21
+            DataField = 'Email'
+            DataSource = DtSrcCliente
+            Enabled = False
+            TabOrder = 1
+          end
+          object CadDBEdtDataNascimento: TDBEdit
+            Left = 175
+            Top = 145
+            Width = 106
+            Height = 21
+            DataField = 'Data_Nascimento'
+            DataSource = DtSrcCliente
+            Enabled = False
+            TabOrder = 3
+          end
+          object CadDBEdtDataHora: TDBEdit
+            Left = 70
+            Top = 5
+            Width = 75
+            Height = 21
+            DataField = 'Data_Hora'
+            DataSource = DtSrcCliente
+            Enabled = False
+            TabOrder = 5
+            Visible = False
+          end
+          object CadDBEdtRemovido: TDBEdit
+            Left = 256
+            Top = 5
+            Width = 95
+            Height = 21
+            DataField = 'Removido'
+            DataSource = DtSrcCliente
+            Enabled = False
+            TabOrder = 6
+            Visible = False
+          end
+          object CadBtnSalvar: TButton
+            Left = 267
+            Top = 184
+            Width = 75
+            Height = 25
+            Caption = 'Gravar'
+            TabOrder = 4
+            OnClick = CadBtnSalvarClick
+          end
+          object CadBtnNovo: TButton
+            Left = 186
+            Top = 184
+            Width = 75
+            Height = 25
+            Caption = 'Novo'
+            TabOrder = 7
+            OnClick = CadBtnNovoClick
           end
         end
-        object CardPanel1: TCardPanel
-          Left = 592
-          Top = 248
-          Width = 300
-          Height = 200
-          Caption = 'CardPanel1'
+        object CadDBGrdForm: TDBGrid
+          Left = 0
+          Top = 376
+          Width = 586
+          Height = 153
+          DataSource = DtSrcCliente
           TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
         end
       end
-      object PnlCadastroCliente: TPanel
+      object CadPnlTitulo: TPanel
         Left = 0
         Top = 0
-        Width = 606
+        Width = 816
         Height = 41
         Align = alTop
         Caption = 'Cadastro de Cliente'
@@ -252,16 +323,15 @@ object FrmPrincipal: TFrmPrincipal
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 2
-        ExplicitWidth = 814
       end
     end
-    object tsConsulta: TTabSheet
+    object TsConsulta: TTabSheet
       Caption = 'Consulta'
       ImageIndex = 1
-      object Panel4: TPanel
+      object ConsPnlTitulo: TPanel
         Left = 0
         Top = 0
-        Width = 606
+        Width = 816
         Height = 41
         Align = alTop
         Caption = 'Consulta de Cliente'
@@ -272,18 +342,15 @@ object FrmPrincipal: TFrmPrincipal
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 814
       end
-      object Panel5: TPanel
-        Left = 393
+      object ConsPnlTelefone: TPanel
+        Left = 603
         Top = 41
         Width = 213
-        Height = 335
+        Height = 531
         Align = alRight
         TabOrder = 1
-        ExplicitLeft = 601
-        ExplicitHeight = 361
-        object SpeedButton1: TSpeedButton
+        object ConsSpdBtnExcluirTelefone: TSpeedButton
           Left = 178
           Top = 6
           Width = 22
@@ -312,7 +379,7 @@ object FrmPrincipal: TFrmPrincipal
             FFFFF3F3FF6D6DFF6060FF6060FF6464FFE4E4FFFFFFFFFFFFFFFFFFFFFFFFFF
             0000}
         end
-        object DBGrid1: TDBGrid
+        object ConsDBGrdTelefone: TDBGrid
           Left = 6
           Top = 6
           Width = 166
@@ -326,7 +393,7 @@ object FrmPrincipal: TFrmPrincipal
           TitleFont.Style = []
         end
       end
-      object LblPesquisa: TEdit
+      object ConsLblPesquisar: TEdit
         Left = 11
         Top = 47
         Width = 505
@@ -334,13 +401,13 @@ object FrmPrincipal: TFrmPrincipal
         TabOrder = 2
         TextHint = 'Pesquisar cliente'
       end
-      object Panel6: TPanel
-        Left = 306
+      object ConsPnlCardCliente: TPanel
+        Left = 3
         Top = 74
         Width = 297
         Height = 94
         TabOrder = 3
-        object Edit7: TEdit
+        object ConsEdtNome: TEdit
           Left = 8
           Top = 8
           Width = 170
@@ -348,7 +415,7 @@ object FrmPrincipal: TFrmPrincipal
           TabOrder = 0
           Text = 'Jos'#233' da Silva Penha e Matos'
         end
-        object Edit8: TEdit
+        object ConsEdtDataHora: TEdit
           Left = 184
           Top = 8
           Width = 105
@@ -356,7 +423,7 @@ object FrmPrincipal: TFrmPrincipal
           TabOrder = 1
           Text = '18/12/2022 | 18:22'
         end
-        object Edit9: TEdit
+        object ConsEdtCPF: TEdit
           Left = 8
           Top = 35
           Width = 170
@@ -364,7 +431,7 @@ object FrmPrincipal: TFrmPrincipal
           TabOrder = 2
           Text = 'CPF'
         end
-        object Edit10: TEdit
+        object ConsEdtDataNascimento: TEdit
           Left = 184
           Top = 35
           Width = 105
@@ -372,7 +439,7 @@ object FrmPrincipal: TFrmPrincipal
           TabOrder = 3
           Text = 'Nascimento'
         end
-        object Button2: TButton
+        object ConsBtnEditar: TButton
           Left = 216
           Top = 62
           Width = 73
@@ -380,7 +447,7 @@ object FrmPrincipal: TFrmPrincipal
           Caption = 'Editar'
           TabOrder = 4
         end
-        object Edit11: TEdit
+        object ConsEdtEmail: TEdit
           Left = 8
           Top = 62
           Width = 202
@@ -389,134 +456,19 @@ object FrmPrincipal: TFrmPrincipal
           Text = 'Email'
         end
       end
-      object PnlConsulta1: TPanel
-        Left = 3
-        Top = 74
-        Width = 297
-        Height = 94
-        TabOrder = 4
-        object Edit2: TEdit
-          Left = 8
-          Top = 8
-          Width = 170
-          Height = 21
-          TabOrder = 0
-          Text = 'Jos'#233' da Silva Penha e Matos'
-        end
-        object Edit3: TEdit
-          Left = 184
-          Top = 8
-          Width = 105
-          Height = 21
-          TabOrder = 1
-          Text = '18/12/2022 | 18:22'
-        end
-        object Edit4: TEdit
-          Left = 8
-          Top = 35
-          Width = 170
-          Height = 21
-          TabOrder = 2
-          Text = 'CPF'
-        end
-        object Edit5: TEdit
-          Left = 184
-          Top = 35
-          Width = 105
-          Height = 21
-          TabOrder = 3
-          Text = 'Nascimento'
-        end
-        object Button1: TButton
-          Left = 216
-          Top = 62
-          Width = 73
-          Height = 25
-          Caption = 'Editar'
-          TabOrder = 4
-        end
-        object Edit6: TEdit
-          Left = 8
-          Top = 62
-          Width = 202
-          Height = 21
-          TabOrder = 5
-          Text = 'Email'
-        end
-      end
-      object CardPanel2: TCardPanel
-        Left = 3
-        Top = 174
-        Width = 300
-        Height = 200
-        Caption = 'CardPanel2'
-        TabOrder = 5
-      end
-      object Button4: TButton
+      object ConsBtnPesquisar: TButton
         Left = 520
         Top = 47
         Width = 75
         Height = 25
-        Caption = 'Button4'
-        TabOrder = 6
-      end
-    end
-    object TesteBD: TTabSheet
-      Caption = 'TesteBD'
-      ImageIndex = 2
-      object DBGrid: TDBGrid
-        Left = 0
-        Top = 256
-        Width = 606
-        Height = 120
-        Align = alBottom
-        DataSource = DtSrcOperadora
-        TabOrder = 0
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -11
-        TitleFont.Name = 'Tahoma'
-        TitleFont.Style = []
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'Id_Operadora'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'Data_Hora'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'Operadora'
-            Visible = True
-          end>
-      end
-      object Ativar: TButton
-        Left = 264
-        Top = 176
-        Width = 75
-        Height = 25
-        Caption = 'Ativar'
-        TabOrder = 1
-        OnClick = AtivarClick
-      end
-      object DBEdit: TDBEdit
-        Left = 32
-        Top = 216
-        Width = 121
-        Height = 21
-        DataField = 'Operadora'
-        DataSource = DtSrcOperadora
-        TabOrder = 2
+        Caption = 'ConsBtnPesquisar'
+        TabOrder = 4
       end
     end
   end
   object ImageList: TImageList
-    Left = 8
-    Top = 24
+    Left = 16
+    Top = 384
     Bitmap = {
       494C010102000800040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
@@ -658,13 +610,18 @@ object FrmPrincipal: TFrmPrincipal
       000000000000}
   end
   object DtSrcOperadora: TDataSource
-    DataSet = DataModule1.QryOperadora
-    Left = 80
-    Top = 24
+    DataSet = DMConexaoBD.QryOperadora
+    Left = 88
+    Top = 384
   end
   object DtSrcCliente_Telefone: TDataSource
-    DataSet = DataModule1.QryCliente_Telefone
-    Left = 184
-    Top = 24
+    DataSet = DMConexaoBD.QryCliente_Telefone
+    Left = 192
+    Top = 384
+  end
+  object DtSrcCliente: TDataSource
+    DataSet = DMConexaoBD.QryCliente
+    Left = 288
+    Top = 384
   end
 end

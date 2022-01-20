@@ -2,69 +2,72 @@ unit uPrincipal;
 
 interface
 
+{$Region 'Uses'}
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
   Vcl.Buttons, Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.WinXPanels,
-  Vcl.Mask, Vcl.DBCtrls, System.ImageList, Vcl.ImgList, Data.FMTBcd,
-  Data.SqlExpr;
+  Vcl.Mask, Vcl.DBCtrls, System.ImageList, Vcl.ImgList, Data.FMTBcd, Data.SqlExpr;
+{$EndRegion}
 
+
+{$Region 'Types'}
 type
-  TFrmPrincipal = class(TForm)
-    PcPrincipal: TPageControl;
-    TsCadastroEdicao: TTabSheet;
-    tsConsulta: TTabSheet;
-    PnlCadastroCliente: TPanel;
-    PnlCadCliente: TPanel;
-    PnlCadastro: TPanel;
-    EdtCPF: TEdit;
-    LblCPF: TLabel;
-    EdtEmail: TEdit;
-    LblNascimento: TLabel;
-    EdtNascimento: TEdit;
-    LblEmail: TLabel;
-    EdtNome: TEdit;
-    LblNome: TLabel;
-    Panel4: TPanel;
-    Panel5: TPanel;
-    SpeedButton1: TSpeedButton;
-    DBGrid1: TDBGrid;
-    LblPesquisa: TEdit;
-    Panel6: TPanel;
-    Edit7: TEdit;
-    Edit8: TEdit;
-    Edit9: TEdit;
-    Edit10: TEdit;
-    Button2: TButton;
-    Edit11: TEdit;
-    PnlConsulta1: TPanel;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Button1: TButton;
-    Edit6: TEdit;
-    PnlEdtCadastroCliente: TPanel;
-    CardPanel1: TCardPanel;
-    CardPanel2: TCardPanel;
+  TPrincipal = class(TForm)
     ImageList: TImageList;
-    Button4: TButton;
-    GrdPnlTelefone: TGridPanel;
-    BtnSalvar: TButton;
-    MkEdtTelefone: TMaskEdit;
     DtSrcOperadora: TDataSource;
     DtSrcCliente_Telefone: TDataSource;
-    CbBoxOperadora: TComboBox;
-    TesteBD: TTabSheet;
-    DBGrid: TDBGrid;
-    Ativar: TButton;
-    DBEdit: TDBEdit;
-    procedure Button3Click(Sender: TObject);
+    DtSrcCliente: TDataSource;
+    PcPrincipal: TPageControl;
+    TsCadastroEdicao: TTabSheet;
+    CadPnlTelefone: TPanel;
+    CadGrdPnlTelefone: TGridPanel;
+    CadBtnSalvarTelefone: TButton;
+    CadMkEdtTelefone: TMaskEdit;
+    CadCbBoxOperadora: TComboBox;
+    CadPnlPrincipal: TPanel;
+    CadPnlForm: TPanel;
+    CadLblNome: TLabel;
+    CadLblCPF: TLabel;
+    CadLblEmail: TLabel;
+    CadLblDataNascimento: TLabel;
+    CadLblDataHora: TLabel;
+    CadLblRemovido: TLabel;
+    CadDBEdtNome: TDBEdit;
+    CadDBEdtCPF: TDBEdit;
+    CadDBEdtEmail: TDBEdit;
+    CadDBEdtDataNascimento: TDBEdit;
+    CadDBEdtDataHora: TDBEdit;
+    CadDBEdtRemovido: TDBEdit;
+    CadBtnSalvar: TButton;
+    CadBtnNovo: TButton;
+    CadDBGrdForm: TDBGrid;
+    CadPnlTitulo: TPanel;
+    TsConsulta: TTabSheet;
+    ConsPnlTitulo: TPanel;
+    ConsPnlTelefone: TPanel;
+    ConsSpdBtnExcluirTelefone: TSpeedButton;
+    ConsDBGrdTelefone: TDBGrid;
+    ConsLblPesquisar: TEdit;
+    ConsPnlCardCliente: TPanel;
+    ConsEdtNome: TEdit;
+    ConsEdtDataHora: TEdit;
+    ConsEdtCPF: TEdit;
+    ConsEdtDataNascimento: TEdit;
+    ConsBtnEditar: TButton;
+    ConsEdtEmail: TEdit;
+    ConsBtnPesquisar: TButton;
     procedure FormCreate(Sender: TObject);
-    procedure MkEdtOperadoraKeyPress(Sender: TObject; var Key: Char);
-    procedure MkEdtTelefoneExit(Sender: TObject);
-    procedure MkEdtTelefoneEnter(Sender: TObject);
-    procedure AtivarClick(Sender: TObject);
+    procedure CadBtnSalvarTelefoneClick(Sender: TObject);
+    procedure CadMkEdtOperadoraKeyPress(Sender: TObject; var Key: Char);
+    procedure CadMkEdtTelefoneExit(Sender: TObject);
+    procedure CadMkEdtTelefoneEnter(Sender: TObject);
+    procedure CadBtnNovoClick(Sender: TObject);
+    procedure CadBtnSalvarClick(Sender: TObject);
+
+
+{$EndRegion}
+
   private
 
   public
@@ -72,7 +75,7 @@ type
   end;
 
 var
-  FrmPrincipal: TFrmPrincipal;
+  Principal: TPrincipal;
   Count, TopPos: Integer;
 
 
@@ -80,26 +83,49 @@ implementation
 
 {$R *.dfm}
 
-uses uConexaoBD;
+uses
+  uConexaoBD;
 
 
-procedure TFrmPrincipal.FormCreate(Sender: TObject);
+procedure TPrincipal.FormCreate(Sender: TObject);
 begin
   Count := 0;
   TopPos := 33;
 end;
 
-procedure TFrmPrincipal.AtivarClick(Sender: TObject);
+procedure TPrincipal.CadBtnNovoClick(Sender: TObject);
 begin
-  uConexaoBD.DataModule1.QryOperadora.Active := not uConexaoBD.DataModule1.QryOperadora.Active;
+  uConexaoBD.DMConexaoBD.QryOperadora.Active := True;
+  uConexaoBD.DMConexaoBD.QryCliente.Active := True;
+  uConexaoBD.DMConexaoBD.QryCliente.Append;
+
+  CadMkEdtTelefone.Enabled := True;
+  CadCbBoxOperadora.Enabled := True;
+  CadBtnSalvarTelefone.Enabled := True;
+  CadDBEdtDataHora.Enabled := True;
+  CadDBEdtRemovido.Enabled := True;
+  CadDBEdtNome.Enabled := True;
+  CadDBEdtEmail.Enabled := True;
+  CadDBEdtCPF.Enabled := True;
+  CadDBEdtDataNascimento.Enabled := True;
+  CadBtnSalvar.Enabled := True;
+
+  CadDBEdtNome.SetFocus;
 end;
 
-procedure TFrmPrincipal.Button3Click(Sender: TObject);
+procedure TPrincipal.CadBtnSalvarClick(Sender: TObject);
+begin
+  uConexaoBD.DMConexaoBD.QryClienteData_Hora.Value := now;
+  uConexaoBD.DMConexaoBD.QryClienteRemovido.Value := 'Não';
+  uConexaoBD.DMConexaoBD.QryCliente.Post;
+end;
 
+procedure TPrincipal.CadBtnSalvarTelefoneClick(Sender: TObject);
 var
-  Operadora: TButton;
-  Telefone: TButton;
+  Operadora: TDBEdit;
+  Telefone: TDBEdit;
   Salvar: TButton;
+
 begin
 
   if Count > 5 then
@@ -108,42 +134,49 @@ begin
     Exit;
   end;
 
+  uConexaoBD.DMConexaoBD.QryOperadora.Append;
+  uConexaoBD.DMConexaoBD.QryOperadoraData_Hora.Value := now;
+  uConexaoBD.DMConexaoBD.QryOperadoraOperadora.Value := CadCbBoxOperadora.Text;
+  uConexaoBD.DMConexaoBD.QryOperadora.Post;
+
   if Count > 0 then
     TopPos := TopPos + 30;
     Inc(Count);
 
-  Telefone := TButton.Create(self);
-    Telefone.Parent := FrmPrincipal.GrdPnlTelefone;
+  Telefone := TDBEdit.Create(self);
+    Telefone.Parent := Principal.CadGrdPnlTelefone;
     Telefone.Width := 100;
-    Telefone.Caption := TButton(FindComponent('MkEdtTelefone')).Caption;
+    Telefone.DataSource := DtSrcCliente_Telefone;
 
-  Operadora := TButton.Create(self);
-    Operadora.Parent := FrmPrincipal.GrdPnlTelefone;
+  Operadora := TDBEdit.Create(self);
+    Operadora.Parent := Principal.CadGrdPnlTelefone;
     Operadora.Width := 69;
-    Operadora.Caption := TButton(FindComponent('MkEdtOperadora')).Caption;
+    Operadora.DataSource := DtSrcOperadora;
+    Operadora.DataField := 'Operadora';
 
   Salvar := TButton.Create(self);
-    Salvar.Parent := FrmPrincipal.GrdPnlTelefone;
+    Salvar.Parent := Principal.CadGrdPnlTelefone;
     Salvar.Images := ImageList;
     Salvar.ImageIndex := 0;
     (*Criar o evento para Deletar elemento*)
 
 
-  //MkEdtTelefone.Clear;
+  CadMkEdtTelefone.Clear;
+  CadCbBoxOperadora.Clear;
+  CadMkEdtTelefone.SetFocus;
 
 end;
 
-
 // máscara da operadora.
-procedure TFrmPrincipal.MkEdtOperadoraKeyPress(Sender: TObject; var Key: Char);
+procedure TPrincipal.CadMkEdtOperadoraKeyPress(Sender: TObject; var Key: Char);
 begin
-   if not(key in ['A'..'Z','a'..'z', #8]) then
-      Key := #0;
+  if not(key in ['A'..'Z','a'..'z', #8]) then
+    Key := #0;
 end;
 
 
 // funcao que retorna somente numeros
-function fncSomenteNumeros(AString: String): String;
+function FncSomenteNumeros(AString: String): String;
 var
   I : Integer;
   Texto : String;
@@ -157,46 +190,41 @@ begin
   end;
 
   Result := Texto;
+
 end;
 
-// mascara do telefone
-procedure TFrmPrincipal.MkEdtTelefoneEnter(Sender: TObject);
-begin
-  MkEdtTelefone.EditMask := '';
-end;
-
-procedure TFrmPrincipal.MkEdtTelefoneExit(Sender: TObject);
+// inserir mascara do telefone
+procedure TPrincipal.CadMkEdtTelefoneExit(Sender: TObject);
 begin
 
-  if Length(fncSomenteNumeros(MkEdtTelefone.Text)) = 10 then
+  if Length(fncSomenteNumeros(CadMkEdtTelefone.Text)) = 10 then
   begin
-    MkEdtTelefone.EditMask := '(00)0000-000;0;_';
+    CadMkEdtTelefone.EditMask := '(00)0000-000;0;_';
 
   end
 
   else
-  if Length(fncSomenteNumeros(MkEdtTelefone.Text)) = 11 then
+  if Length(fncSomenteNumeros(CadMkEdtTelefone.Text)) = 11 then
   begin
-    MkEdtTelefone.EditMask := '(00)00000-000;0;_';
+    CadMkEdtTelefone.EditMask := '(00)00000-000;0;_';
 
   end
 
   else
-  if Length(fncSomenteNumeros(MkEdtTelefone.Text)) <> 0 then
+  if Length(fncSomenteNumeros(CadMkEdtTelefone.Text)) <> 0 then
   begin
     ShowMessage('Número inválido!');
-    MkEdtTelefone.SetFocus;
+    CadMkEdtTelefone.SetFocus;
     abort;
   end;
 
-
-
 end;
 
-
-
-
-
+// limpar mascara do telefone
+procedure TPrincipal.CadMkEdtTelefoneEnter(Sender: TObject);
+begin
+  CadMkEdtTelefone.EditMask := '';
+end;
 
 
 end.

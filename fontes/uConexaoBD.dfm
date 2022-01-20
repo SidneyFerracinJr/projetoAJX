@@ -1,6 +1,6 @@
-object DataModule1: TDataModule1
+object DMConexaoBD: TDMConexaoBD
   OldCreateOrder = False
-  Height = 258
+  Height = 158
   Width = 379
   object FDConnection: TFDConnection
     Params.Strings = (
@@ -8,13 +8,12 @@ object DataModule1: TDataModule1
       'User_Name=root'
       'Password=root'
       'DriverID=MySQL')
-    Connected = True
     LoginPrompt = False
+    BeforeConnect = FDConnectionBeforeConnect
     Left = 40
     Top = 24
   end
   object MySQLDriverLink: TFDPhysMySQLDriverLink
-    VendorLib = 'C:\Users\sidne\Documents\projetoAJX\bd\libmysql.dll'
     Left = 160
     Top = 24
   end
@@ -24,18 +23,11 @@ object DataModule1: TDataModule1
     Top = 24
   end
   object QryOperadora: TFDQuery
-    Active = True
     Connection = FDConnection
     SQL.Strings = (
       'SELECT * FROM ajx.operadora;')
     Left = 40
     Top = 88
-    object QryOperadoraId_Operadora: TIntegerField
-      AutoGenerateValue = arAutoInc
-      FieldName = 'Id_Operadora'
-      Origin = 'Id_Operadora'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-    end
     object QryOperadoraData_Hora: TDateTimeField
       FieldName = 'Data_Hora'
       Origin = 'Data_Hora'
@@ -55,33 +47,39 @@ object DataModule1: TDataModule1
     Left = 160
     Top = 88
     object QryClienteData_Hora: TDateTimeField
+      DisplayWidth = 10
       FieldName = 'Data_Hora'
       Origin = 'Data_Hora'
       Required = True
     end
     object QryClienteNome: TStringField
+      DisplayWidth = 22
       FieldName = 'Nome'
       Origin = 'Nome'
       Required = True
       Size = 45
     end
     object QryClienteCPF: TIntegerField
+      DisplayWidth = 16
       FieldName = 'CPF'
       Origin = 'CPF'
       Required = True
     end
     object QryClienteData_Nascimento: TDateField
+      DisplayWidth = 14
       FieldName = 'Data_Nascimento'
       Origin = 'Data_Nascimento'
       Required = True
     end
     object QryClienteEmail: TStringField
+      DisplayWidth = 100
       FieldName = 'Email'
       Origin = 'Email'
       Required = True
       Size = 100
     end
     object QryClienteRemovido: TStringField
+      DisplayWidth = 7
       FieldName = 'Removido'
       Origin = 'Removido'
       Required = True
@@ -94,31 +92,10 @@ object DataModule1: TDataModule1
       'SELECT * FROM ajx.cliente_telefone')
     Left = 296
     Top = 88
-    object QryCliente_TelefoneData_Hora: TDateTimeField
-      FieldName = 'Data_Hora'
-      Origin = 'Data_Hora'
-      Required = True
-    end
-    object QryCliente_TelefoneClienteID: TIntegerField
-      FieldName = 'ClienteID'
-      Origin = 'ClienteID'
-      Required = True
-    end
-    object QryCliente_TelefoneOperadoraID: TIntegerField
-      FieldName = 'OperadoraID'
-      Origin = 'OperadoraID'
-      Required = True
-    end
     object QryCliente_TelefoneTelefone: TIntegerField
       FieldName = 'Telefone'
       Origin = 'Telefone'
       Required = True
-    end
-    object QryCliente_TelefoneRemovido: TStringField
-      FieldName = 'Removido'
-      Origin = 'Removido'
-      Required = True
-      Size = 3
     end
   end
 end

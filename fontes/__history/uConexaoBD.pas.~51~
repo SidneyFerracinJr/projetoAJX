@@ -1,0 +1,53 @@
+unit uConexaoBD;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQLDef,
+  FireDAC.VCLUI.Wait, FireDAC.Comp.UI, FireDAC.Phys.MySQL, Data.DB,
+  FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
+  FireDAC.DApt, FireDAC.Comp.DataSet, Data.DBXMySQL, Data.FMTBcd, Data.SqlExpr;
+
+type
+  TDMConexaoBD = class(TDataModule)
+    FDConnection: TFDConnection;
+    MySQLDriverLink: TFDPhysMySQLDriverLink;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    QryOperadora: TFDQuery;
+    QryCliente: TFDQuery;
+    QryCliente_Telefone: TFDQuery;
+    QryOperadoraOperadora: TStringField;
+    QryClienteData_Hora: TDateTimeField;
+    QryClienteNome: TStringField;
+    QryClienteCPF: TIntegerField;
+    QryClienteData_Nascimento: TDateField;
+    QryClienteEmail: TStringField;
+    QryClienteRemovido: TStringField;
+    QryCliente_TelefoneTelefone: TIntegerField;
+    QryOperadoraData_Hora: TDateTimeField;
+    procedure FDConnectionBeforeConnect(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMConexaoBD: TDMConexaoBD;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+
+
+procedure TDMConexaoBD.FDConnectionBeforeConnect(Sender: TObject);
+begin
+  MySQLDriverLink.VendorLib := GetCurrentDir + '\lib\libmysql.dl';
+end;
+
+end.

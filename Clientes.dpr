@@ -2,15 +2,15 @@ program Clientes;
 
 uses
   Vcl.Forms,
-  uPrincipal in 'fontes\uPrincipal.pas' {FrmPrincipal},
-  uConexaoBD in 'fontes\uConexaoBD.pas' {DataModule1: TDataModule};
+  uPrincipal in 'fontes\uPrincipal.pas' {Principal},
+  uConexaoBD in 'fontes\uConexaoBD.pas' {DMConexaoBD: TDataModule};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFrmPrincipal, FrmPrincipal);
-  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TPrincipal, Principal);
+  Application.CreateForm(TDMConexaoBD, DMConexaoBD);
   Application.Run;
 end.

@@ -11,14 +11,13 @@ uses
   FireDAC.DApt, FireDAC.Comp.DataSet, Data.DBXMySQL, Data.FMTBcd, Data.SqlExpr;
 
 type
-  TDataModule1 = class(TDataModule)
+  TDMConexaoBD = class(TDataModule)
     FDConnection: TFDConnection;
     MySQLDriverLink: TFDPhysMySQLDriverLink;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     QryOperadora: TFDQuery;
     QryCliente: TFDQuery;
     QryCliente_Telefone: TFDQuery;
-    QryOperadoraData_Hora: TDateTimeField;
     QryOperadoraOperadora: TStringField;
     QryClienteData_Hora: TDateTimeField;
     QryClienteNome: TStringField;
@@ -26,12 +25,9 @@ type
     QryClienteData_Nascimento: TDateField;
     QryClienteEmail: TStringField;
     QryClienteRemovido: TStringField;
-    QryCliente_TelefoneData_Hora: TDateTimeField;
-    QryCliente_TelefoneClienteID: TIntegerField;
-    QryCliente_TelefoneOperadoraID: TIntegerField;
     QryCliente_TelefoneTelefone: TIntegerField;
-    QryCliente_TelefoneRemovido: TStringField;
-    QryOperadoraId_Operadora: TIntegerField;
+    QryOperadoraData_Hora: TDateTimeField;
+    procedure FDConnectionBeforeConnect(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,12 +35,19 @@ type
   end;
 
 var
-  DataModule1: TDataModule1;
+  DMConexaoBD: TDMConexaoBD;
 
 implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+
+
+procedure TDMConexaoBD.FDConnectionBeforeConnect(Sender: TObject);
+begin
+  MySQLDriverLink.VendorLib := GetCurrentDir + '\lib\libmysql.dll';
+end;
 
 end.

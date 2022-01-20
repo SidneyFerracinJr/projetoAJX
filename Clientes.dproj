@@ -87,6 +87,8 @@
         <DCC_DcuOutput>.\fontes</DCC_DcuOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_DcpOutput>D:\Documentos\projetoAJX\output\</DCC_DcpOutput>
+        <DCC_BplOutput>D:\Documentos\projetoAJX\output\</DCC_BplOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -103,11 +105,11 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="fontes\uPrincipal.pas">
-            <Form>FrmPrincipal</Form>
+            <Form>Principal</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="fontes\uConexaoBD.pas">
-            <Form>DataModule1</Form>
+            <Form>DMConexaoBD</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
@@ -131,7 +133,6 @@
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp270.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Users\sidne\Downloads\Delphi Youtube\Fortesreport\Binary\LibD27\frce.bpl">File C:\Users\sidne\Downloads\Delphi Youtube\Fortesreport\Binary\LibD27\frce.bpl not found</Excluded_Packages>
                 </Excluded_Packages>
                 <Source>
                     <Source Name="MainSource">Clientes.dpr</Source>
