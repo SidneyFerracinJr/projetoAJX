@@ -18,18 +18,24 @@ type
     QryOperadora: TFDQuery;
     QryCliente: TFDQuery;
     QryCliente_Telefone: TFDQuery;
+    QryOperadoraData_Hora: TDateTimeField;
     QryOperadoraOperadora: TStringField;
     QryClienteData_Hora: TDateTimeField;
     QryClienteNome: TStringField;
-    QryClienteCPF: TIntegerField;
+    QryClienteCPF: TStringField;
     QryClienteData_Nascimento: TDateField;
     QryClienteEmail: TStringField;
     QryClienteRemovido: TStringField;
-    QryCliente_TelefoneTelefone: TIntegerField;
-    QryOperadoraData_Hora: TDateTimeField;
+    QryCliente_TelefoneData_Hora: TDateTimeField;
+    QryCliente_TelefoneClienteID: TIntegerField;
+    QryCliente_TelefoneOperadoraID: TIntegerField;
+    QryCliente_TelefoneTelefone: TStringField;
+    QryCliente_TelefoneRemovido: TStringField;
     procedure FDConnectionBeforeConnect(Sender: TObject);
   private
-    { Private declarations }
+    function F_TemCPF (a,b : integer) : integer;
+    procedure P_Telefone (Sender: TObject);
+
   public
     { Public declarations }
   end;
@@ -49,5 +55,19 @@ procedure TDMConexaoBD.FDConnectionBeforeConnect(Sender: TObject);
 begin
   MySQLDriverLink.VendorLib := GetCurrentDir + '\lib\libmysql.dll';
 end;
+
+//função "F_TemCPF": recebe o CPF e retorna true ou false se o CPF já existir
+function TDMConexaoBD.F_TemCPF(a: Integer; b: Integer): Integer;
+begin
+
+end;
+
+//procedure "P_Telefone": recebe o código do cliente, operadora e telefone e cadastra no banco de dados
+procedure TDMConexaoBD.P_Telefone(Sender: TObject);
+begin
+
+end;
+
+
 
 end.

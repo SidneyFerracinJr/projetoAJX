@@ -7,12 +7,14 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
   Vcl.Buttons, Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.WinXPanels,
-  Vcl.Mask, Vcl.DBCtrls, System.ImageList, Vcl.ImgList, Data.FMTBcd, Data.SqlExpr;
+  Vcl.Mask, Vcl.DBCtrls, System.ImageList, Vcl.ImgList, Data.FMTBcd, Data.SqlExpr,
+  uClientes, uConexaoBD;
 {$EndRegion}
 
 
 {$Region 'Types'}
 type
+
   TPrincipal = class(TForm)
     ImageList: TImageList;
     DtSrcOperadora: TDataSource;
@@ -33,15 +35,13 @@ type
     CadLblDataNascimento: TLabel;
     CadLblDataHora: TLabel;
     CadLblRemovido: TLabel;
-    CadDBEdtNome: TDBEdit;
-    CadDBEdtCPF: TDBEdit;
-    CadDBEdtEmail: TDBEdit;
-    CadDBEdtDataNascimento: TDBEdit;
-    CadDBEdtDataHora: TDBEdit;
-    CadDBEdtRemovido: TDBEdit;
+    CadDBEdtNom: TDBEdit;
+    CadDBEdtCP: TDBEdit;
+    CadDBEdtEmai: TDBEdit;
+    CadDBEdtDataNasciment: TDBEdit;
+    CadDBEdtRemovid: TDBEdit;
     CadBtnSalvar: TButton;
     CadBtnNovo: TButton;
-    CadDBGrdForm: TDBGrid;
     CadPnlTitulo: TPanel;
     TsConsulta: TTabSheet;
     ConsPnlTitulo: TPanel;
@@ -57,6 +57,13 @@ type
     ConsBtnEditar: TButton;
     ConsEdtEmail: TEdit;
     ConsBtnPesquisar: TButton;
+    CadDBEdtDataHora: TMaskEdit;
+    CadDBEdtDataHor: TDBEdit;
+    CadDBEdtRemovido: TEdit;
+    CadDBEdtNome: TEdit;
+    CadDBEdtEmail: TEdit;
+    CadDBEdtCPF: TMaskEdit;
+    CadDBEdtDataNascimento: TMaskEdit;
     procedure FormCreate(Sender: TObject);
     procedure CadBtnSalvarTelefoneClick(Sender: TObject);
     procedure CadMkEdtOperadoraKeyPress(Sender: TObject; var Key: Char);
@@ -64,9 +71,8 @@ type
     procedure CadMkEdtTelefoneEnter(Sender: TObject);
     procedure CadBtnNovoClick(Sender: TObject);
     procedure CadBtnSalvarClick(Sender: TObject);
+    procedure DeletarTelefone(Sender: TObject);
 
-
-{$EndRegion}
 
   private
 
@@ -74,31 +80,37 @@ type
     { Public declarations }
   end;
 
+{$EndRegion}
+
 var
   Principal: TPrincipal;
-  Count, TopPos: Integer;
+  ID, Count, TopPos: Integer;
 
 
 implementation
 
 {$R *.dfm}
 
-uses
-  uConexaoBD;
-
 
 procedure TPrincipal.FormCreate(Sender: TObject);
 begin
+  ID := 0;
   Count := 0;
   TopPos := 33;
 end;
 
 procedure TPrincipal.CadBtnNovoClick(Sender: TObject);
 begin
+
   uConexaoBD.DMConexaoBD.QryOperadora.Active := True;
   uConexaoBD.DMConexaoBD.QryCliente.Active := True;
-  uConexaoBD.DMConexaoBD.QryCliente.Append;
+  uConexaoBD.DMConexaoBD.QryCliente_Telefone.Active := True;
 
+  uConexaoBD.DMConexaoBD.QryOperadora.Append;
+  uConexaoBD.DMConexaoBD.QryCliente.Append;
+  uConexaoBD.DMConexaoBD.QryCliente_Telefone.Append;
+
+  CadBtnNovo.Enabled := False;
   CadMkEdtTelefone.Enabled := True;
   CadCbBoxOperadora.Enabled := True;
   CadBtnSalvarTelefone.Enabled := True;
@@ -114,56 +126,112 @@ begin
 end;
 
 procedure TPrincipal.CadBtnSalvarClick(Sender: TObject);
+var
+varNow: TDateTime;
+
 begin
-  uConexaoBD.DMConexaoBD.QryClienteData_Hora.Value := now;
-  uConexaoBD.DMConexaoBD.QryClienteRemovido.Value := 'Não';
+
+varNow := now;
+
+  //Cliente
+  DtSrcCliente.DataSet.FieldByName('Data_Hora').AsDateTime := varNow;
+  DtSrcCliente.DataSet.FieldByName('Nome').AsString := CadDBEdtNome.Text;
+  DtSrcCliente.DataSet.FieldByName('CPF').AsString := CadDBEdtCPF.Text;
+  DtSrcCliente.DataSet.FieldByName('Data_Nascimento').AsString := CadDBEdtDataNascimento.Text;
+  DtSrcCliente.DataSet.FieldByName('Email').AsString := CadDBEdtEmail.Text;
+  DtSrcCliente.DataSet.FieldByName('Removido').AsString := 'Não';
+
+  //Operadora
+  DtSrcOperadora.DataSet.FieldByName('Data_Hora').AsDateTime := varNow;
+  DtSrcOperadora.DataSet.FieldByName('Operadora').AsString := CadCbBoxOperadora.Text;
+
+  //Cliente_Telefone
+  DtSrcCliente_Telefone.DataSet.FieldByName('Data_Hora').AsDateTime := varNow;
+  DtSrcCliente_Telefone.DataSet.FieldByName('ClienteID').AsString := IntToStr(ID);
+  DtSrcCliente_Telefone.DataSet.FieldByName('OperadoraID').AsString := IntToStr(ID);
+  DtSrcCliente_Telefone.DataSet.FieldByName('Telefone').AsString := CadMkEdtTelefone.Text;
+  DtSrcCliente_Telefone.DataSet.FieldByName('Removido').AsString := 'Não';
+
   uConexaoBD.DMConexaoBD.QryCliente.Post;
+  uConexaoBD.DMConexaoBD.QryOperadora.Post;
+  uConexaoBD.DMConexaoBD.QryCliente_Telefone.Post;
+
+  Inc(ID);
+
 end;
 
 procedure TPrincipal.CadBtnSalvarTelefoneClick(Sender: TObject);
 var
-  Operadora: TDBEdit;
-  Telefone: TDBEdit;
-  Salvar: TButton;
+  Operadora: TEdit;
+  Telefone: TEdit;
+  Excluir: TButton;
 
 begin
 
-  if Count > 5 then
+  if CadMkEdtTelefone.Text = '' then
+  begin
+    ShowMessage('Telefone não preenchido!');
+    Abort;
+  end;
+
+  if Count > 9 then
   begin
     ShowMessage('Limite atingido!');
     Exit;
   end;
 
-  uConexaoBD.DMConexaoBD.QryOperadora.Append;
-  uConexaoBD.DMConexaoBD.QryOperadoraData_Hora.Value := now;
-  uConexaoBD.DMConexaoBD.QryOperadoraOperadora.Value := CadCbBoxOperadora.Text;
-  uConexaoBD.DMConexaoBD.QryOperadora.Post;
-
   if Count > 0 then
+  begin
     TopPos := TopPos + 30;
     Inc(Count);
+  end;
 
-  Telefone := TDBEdit.Create(self);
+  Telefone := TEdit.Create(self);
     Telefone.Parent := Principal.CadGrdPnlTelefone;
+    Telefone.Name := 'TDBEdtTelefone' + IntToStr(Count);
     Telefone.Width := 100;
-    Telefone.DataSource := DtSrcCliente_Telefone;
+    Telefone.Text := CadMkEdtTelefone.Text;
 
-  Operadora := TDBEdit.Create(self);
+  Operadora := TEdit.Create(self);
     Operadora.Parent := Principal.CadGrdPnlTelefone;
+    Operadora.Name := 'TDBEdtOperadora' + IntToStr(Count);
     Operadora.Width := 69;
-    Operadora.DataSource := DtSrcOperadora;
-    Operadora.DataField := 'Operadora';
+    Operadora.Text := CadCbBoxOperadora.Text;
 
-  Salvar := TButton.Create(self);
-    Salvar.Parent := Principal.CadGrdPnlTelefone;
-    Salvar.Images := ImageList;
-    Salvar.ImageIndex := 0;
+  Excluir := TButton.Create(self);
+    Excluir.Parent := Principal.CadGrdPnlTelefone;
+    Excluir.Name := 'TButton' + IntToStr(Count);
+    Excluir.Caption := '';
+    Excluir.Images := ImageList;
+    Excluir.ImageIndex := 0;
+    Excluir.OnClick := DeletarTelefone;
+
+
     (*Criar o evento para Deletar elemento*)
 
 
   CadMkEdtTelefone.Clear;
   CadCbBoxOperadora.Clear;
   CadMkEdtTelefone.SetFocus;
+
+end;
+
+procedure TPrincipal.DeletarTelefone(Sender: TObject);
+var
+  delOperadora: TComponent;
+  delTelefone: TComponent;
+  delBtn: TComponent;
+begin
+
+
+  delOperadora := FindComponent('TDBEdtTelefone' + IntToStr(Count));
+  delTelefone := FindComponent('TDBEdtOperadora' + IntToStr(Count));
+  delBtn := FindComponent('TButton' + IntToStr(Count));
+
+  delOperadora.Free;
+  delTelefone.Free;
+  delBtn.Free;
+
 
 end;
 
@@ -200,14 +268,12 @@ begin
   if Length(fncSomenteNumeros(CadMkEdtTelefone.Text)) = 10 then
   begin
     CadMkEdtTelefone.EditMask := '(00)0000-000;0;_';
-
   end
 
   else
   if Length(fncSomenteNumeros(CadMkEdtTelefone.Text)) = 11 then
   begin
     CadMkEdtTelefone.EditMask := '(00)00000-000;0;_';
-
   end
 
   else

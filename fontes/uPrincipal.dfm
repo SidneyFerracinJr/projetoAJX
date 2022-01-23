@@ -2,7 +2,7 @@ object Principal: TPrincipal
   Left = 0
   Top = 0
   Caption = 'Cliente'
-  ClientHeight = 600
+  ClientHeight = 438
   ClientWidth = 824
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object Principal: TPrincipal
     Left = 0
     Top = 0
     Width = 824
-    Height = 600
+    Height = 438
     ActivePage = TsCadastroEdicao
     Align = alClient
     TabOrder = 0
@@ -29,14 +29,14 @@ object Principal: TPrincipal
         Left = 616
         Top = 41
         Width = 200
-        Height = 531
+        Height = 369
         Align = alRight
         TabOrder = 0
         object CadGrdPnlTelefone: TGridPanel
           Left = 1
           Top = 1
           Width = 198
-          Height = 529
+          Height = 367
           Align = alClient
           ColumnCollection = <
             item
@@ -101,10 +101,10 @@ object Principal: TPrincipal
           TabOrder = 0
           DesignSize = (
             198
-            529)
+            367)
           object CadBtnSalvarTelefone: TButton
             Left = 174
-            Top = 13
+            Top = 6
             Width = 23
             Height = 23
             Anchors = []
@@ -116,7 +116,7 @@ object Principal: TPrincipal
           end
           object CadMkEdtTelefone: TMaskEdit
             Left = 3
-            Top = 14
+            Top = 7
             Width = 90
             Height = 21
             Anchors = []
@@ -129,7 +129,7 @@ object Principal: TPrincipal
           end
           object CadCbBoxOperadora: TComboBox
             Left = 96
-            Top = 14
+            Top = 7
             Width = 78
             Height = 21
             Anchors = []
@@ -152,10 +152,9 @@ object Principal: TPrincipal
         Left = 0
         Top = 41
         Width = 616
-        Height = 531
+        Height = 369
         Align = alClient
         TabOrder = 1
-        ExplicitLeft = -2
         object CadPnlForm: TPanel
           Left = 136
           Top = 64
@@ -170,7 +169,7 @@ object Principal: TPrincipal
             Width = 27
             Height = 13
             Caption = 'Nome'
-            FocusControl = CadDBEdtNome
+            FocusControl = CadDBEdtNom
           end
           object CadLblCPF: TLabel
             Left = 45
@@ -178,7 +177,7 @@ object Principal: TPrincipal
             Width = 19
             Height = 13
             Caption = 'CPF'
-            FocusControl = CadDBEdtCPF
+            FocusControl = CadDBEdtCP
           end
           object CadLblEmail: TLabel
             Left = 45
@@ -186,7 +185,7 @@ object Principal: TPrincipal
             Width = 24
             Height = 13
             Caption = 'Email'
-            FocusControl = CadDBEdtEmail
+            FocusControl = CadDBEdtEmai
           end
           object CadLblDataNascimento: TLabel
             Left = 175
@@ -194,7 +193,7 @@ object Principal: TPrincipal
             Width = 96
             Height = 13
             Caption = 'Data de Nascimento'
-            FocusControl = CadDBEdtDataNascimento
+            FocusControl = CadDBEdtDataNasciment
           end
           object CadLblDataHora: TLabel
             Left = 12
@@ -202,7 +201,6 @@ object Principal: TPrincipal
             Width = 52
             Height = 13
             Caption = 'Data_Hora'
-            FocusControl = CadDBEdtDataHora
             Visible = False
           end
           object CadLblRemovido: TLabel
@@ -211,10 +209,10 @@ object Principal: TPrincipal
             Width = 47
             Height = 13
             Caption = 'Removido'
-            FocusControl = CadDBEdtRemovido
+            FocusControl = CadDBEdtRemovid
             Visible = False
           end
-          object CadDBEdtNome: TDBEdit
+          object CadDBEdtNom: TDBEdit
             Left = 45
             Top = 51
             Width = 236
@@ -224,7 +222,7 @@ object Principal: TPrincipal
             Enabled = False
             TabOrder = 0
           end
-          object CadDBEdtCPF: TDBEdit
+          object CadDBEdtCP: TDBEdit
             Left = 46
             Top = 145
             Width = 123
@@ -234,7 +232,7 @@ object Principal: TPrincipal
             Enabled = False
             TabOrder = 2
           end
-          object CadDBEdtEmail: TDBEdit
+          object CadDBEdtEmai: TDBEdit
             Left = 45
             Top = 99
             Width = 236
@@ -244,7 +242,7 @@ object Principal: TPrincipal
             Enabled = False
             TabOrder = 1
           end
-          object CadDBEdtDataNascimento: TDBEdit
+          object CadDBEdtDataNasciment: TDBEdit
             Left = 175
             Top = 145
             Width = 106
@@ -254,18 +252,7 @@ object Principal: TPrincipal
             Enabled = False
             TabOrder = 3
           end
-          object CadDBEdtDataHora: TDBEdit
-            Left = 70
-            Top = 5
-            Width = 75
-            Height = 21
-            DataField = 'Data_Hora'
-            DataSource = DtSrcCliente
-            Enabled = False
-            TabOrder = 5
-            Visible = False
-          end
-          object CadDBEdtRemovido: TDBEdit
+          object CadDBEdtRemovid: TDBEdit
             Left = 256
             Top = 5
             Width = 95
@@ -273,7 +260,7 @@ object Principal: TPrincipal
             DataField = 'Removido'
             DataSource = DtSrcCliente
             Enabled = False
-            TabOrder = 6
+            TabOrder = 5
             Visible = False
           end
           object CadBtnSalvar: TButton
@@ -282,6 +269,7 @@ object Principal: TPrincipal
             Width = 75
             Height = 25
             Caption = 'Gravar'
+            Enabled = False
             TabOrder = 4
             OnClick = CadBtnSalvarClick
           end
@@ -291,22 +279,81 @@ object Principal: TPrincipal
             Width = 75
             Height = 25
             Caption = 'Novo'
-            TabOrder = 7
+            TabOrder = 6
             OnClick = CadBtnNovoClick
           end
-        end
-        object CadDBGrdForm: TDBGrid
-          Left = 0
-          Top = 376
-          Width = 586
-          Height = 153
-          DataSource = DtSrcCliente
-          TabOrder = 1
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -11
-          TitleFont.Name = 'Tahoma'
-          TitleFont.Style = []
+          object CadDBEdtDataHor: TDBEdit
+            Left = 70
+            Top = 5
+            Width = 75
+            Height = 21
+            DataField = 'Data_Hora'
+            DataSource = DtSrcCliente
+            Enabled = False
+            TabOrder = 8
+            Visible = False
+          end
+          object CadDBEdtRemovido: TEdit
+            Left = 251
+            Top = 5
+            Width = 102
+            Height = 21
+            Enabled = False
+            TabOrder = 9
+            TextHint = 'Sim/N'#227'o'
+            Visible = False
+          end
+          object CadDBEdtDataHora: TMaskEdit
+            Left = 70
+            Top = 5
+            Width = 99
+            Height = 21
+            Enabled = False
+            TabOrder = 7
+            Text = ''
+            TextHint = '01/01/0000'
+            Visible = False
+          end
+          object CadDBEdtNome: TEdit
+            Left = 45
+            Top = 51
+            Width = 236
+            Height = 21
+            Enabled = False
+            TabOrder = 10
+            TextHint = 'Insira o nome aqui'
+          end
+          object CadDBEdtEmail: TEdit
+            Left = 45
+            Top = 99
+            Width = 236
+            Height = 21
+            Enabled = False
+            TabOrder = 11
+            TextHint = 'email@email.com'
+          end
+          object CadDBEdtCPF: TMaskEdit
+            Left = 45
+            Top = 145
+            Width = 124
+            Height = 21
+            Enabled = False
+            EditMask = '000.000.000-00;1;_'
+            MaxLength = 14
+            TabOrder = 12
+            Text = '   .   .   -  '
+          end
+          object CadDBEdtDataNascimento: TMaskEdit
+            Left = 175
+            Top = 145
+            Width = 105
+            Height = 21
+            Enabled = False
+            EditMask = '!99/99/00;1;_'
+            MaxLength = 8
+            TabOrder = 13
+            Text = '  /  /  '
+          end
         end
       end
       object CadPnlTitulo: TPanel
@@ -347,7 +394,7 @@ object Principal: TPrincipal
         Left = 603
         Top = 41
         Width = 213
-        Height = 531
+        Height = 369
         Align = alRight
         TabOrder = 1
         object ConsSpdBtnExcluirTelefone: TSpeedButton

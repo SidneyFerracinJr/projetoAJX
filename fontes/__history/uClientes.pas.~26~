@@ -1,0 +1,90 @@
+unit uClientes;
+
+interface
+
+type
+
+  //classe TTelefones: deve armazenar a lista de telefone do cliente
+  TTelefones = class
+
+  end;
+
+
+  //classe TCliente: armazenar todos os dados do cliente com a função salvar
+  TCliente = class
+  private
+    FNome: String;
+    FCPF: String;
+    FData_Nascimento: TDateTime;
+    FEmail: String;
+    procedure SetCPF(const Value: String);
+    procedure SetData_Nascimento(const Value: TDateTime);
+    procedure SetEmail(const Value: String);
+    procedure SetNome(const Value: String);
+
+
+
+  protected
+
+  public
+    //•	cada classe deve ter um constructor
+    //•	cada classe deve ter um destructor
+    function Pode_Salvar(): Integer; //a propria classe deve saber se vai salvar ou editar o registro;
+    property Nome: String read FNome write SetNome;
+    property CPF: String read FCPF write SetCPF;
+    property Data_Nascimento: TDateTime read FData_Nascimento write SetData_Nascimento;
+    property Email: String read FEmail write SetEmail;
+    destructor Destroy; override;
+
+  published
+
+  end;
+
+  //classe TClientes: armazena a lista de clientes cadastrados
+  TClientes = class
+
+  private
+
+  public
+
+  published
+
+  end;
+
+implementation
+
+{ TCliente }
+
+
+destructor TCliente.Destroy;
+begin
+  //destrutor
+  inherited;
+end;
+
+function TCliente.Pode_Salvar: Integer;
+begin
+  //retorna uma booleana para saber se todos os dados estão validados
+end;
+
+procedure TCliente.SetCPF(const Value: String);
+begin
+  FCPF := Value;
+end;
+
+procedure TCliente.SetData_Nascimento(const Value: TDateTime);
+begin
+  FData_Nascimento := Value;
+end;
+
+procedure TCliente.SetEmail(const Value: String);
+begin
+  FEmail := Value;
+end;
+
+procedure TCliente.SetNome(const Value: String);
+begin
+  FNome := Value;
+end;
+
+end.

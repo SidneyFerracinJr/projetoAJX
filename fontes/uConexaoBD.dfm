@@ -47,39 +47,34 @@ object DMConexaoBD: TDMConexaoBD
     Left = 160
     Top = 88
     object QryClienteData_Hora: TDateTimeField
-      DisplayWidth = 10
       FieldName = 'Data_Hora'
       Origin = 'Data_Hora'
       Required = True
     end
     object QryClienteNome: TStringField
-      DisplayWidth = 22
       FieldName = 'Nome'
       Origin = 'Nome'
       Required = True
       Size = 45
     end
-    object QryClienteCPF: TIntegerField
-      DisplayWidth = 16
+    object QryClienteCPF: TStringField
       FieldName = 'CPF'
       Origin = 'CPF'
       Required = True
+      Size = 11
     end
     object QryClienteData_Nascimento: TDateField
-      DisplayWidth = 14
       FieldName = 'Data_Nascimento'
       Origin = 'Data_Nascimento'
       Required = True
     end
     object QryClienteEmail: TStringField
-      DisplayWidth = 100
       FieldName = 'Email'
       Origin = 'Email'
       Required = True
       Size = 100
     end
     object QryClienteRemovido: TStringField
-      DisplayWidth = 7
       FieldName = 'Removido'
       Origin = 'Removido'
       Required = True
@@ -92,10 +87,32 @@ object DMConexaoBD: TDMConexaoBD
       'SELECT * FROM ajx.cliente_telefone')
     Left = 296
     Top = 88
-    object QryCliente_TelefoneTelefone: TIntegerField
+    object QryCliente_TelefoneData_Hora: TDateTimeField
+      FieldName = 'Data_Hora'
+      Origin = 'Data_Hora'
+      Required = True
+    end
+    object QryCliente_TelefoneClienteID: TIntegerField
+      FieldName = 'ClienteID'
+      Origin = 'ClienteID'
+      Required = True
+    end
+    object QryCliente_TelefoneOperadoraID: TIntegerField
+      FieldName = 'OperadoraID'
+      Origin = 'OperadoraID'
+      Required = True
+    end
+    object QryCliente_TelefoneTelefone: TStringField
       FieldName = 'Telefone'
       Origin = 'Telefone'
       Required = True
+      Size = 11
+    end
+    object QryCliente_TelefoneRemovido: TStringField
+      FieldName = 'Removido'
+      Origin = 'Removido'
+      Required = True
+      Size = 3
     end
   end
 end

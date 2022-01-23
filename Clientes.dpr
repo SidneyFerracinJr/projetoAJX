@@ -3,7 +3,8 @@ program Clientes;
 uses
   Vcl.Forms,
   uPrincipal in 'fontes\uPrincipal.pas' {Principal},
-  uConexaoBD in 'fontes\uConexaoBD.pas' {DMConexaoBD: TDataModule};
+  uConexaoBD in 'fontes\uConexaoBD.pas' {DMConexaoBD: TDataModule},
+  uClientes in 'fontes\uClientes.pas';
 
 {$R *.res}
 

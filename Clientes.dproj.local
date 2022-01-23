@@ -2,13 +2,22 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2022/01/13 19:24:21.000.114,=C:\Users\sidne\Documents\AJX\DELPHI\Pasta Padrão de Projeto\Unit1.pas</Transaction>
-    <Transaction>2022/01/13 20:17:28.000.004,C:\Users\sidne\Documents\AJX\DELPHI\Pasta Padrão de Projeto\Unit1.pas=C:\Users\sidne\Documents\Proj_AJX\fontes\uPrincipal.pas</Transaction>
-    <Transaction>2022/01/13 20:17:28.000.004,C:\Users\sidne\Documents\AJX\DELPHI\Pasta Padrão de Projeto\Unit1.dfm=C:\Users\sidne\Documents\Proj_AJX\fontes\uPrincipal.dfm</Transaction>
-    <Transaction>2022/01/13 20:17:55.000.960,C:\Users\sidne\Documents\AJX\DELPHI\Pasta Padrão de Projeto\Project1.dproj=C:\Users\sidne\Documents\Proj_AJX\Clientes.dproj</Transaction>
+    <Transaction>2022/01/13 20:17:28.000.004,C:\Users\sidne\Documents\Proj_AJX\fontes\uPrincipal.dfm=C:\Users\sidne\Documents\AJX\DELPHI\Pasta Padrão de Projeto\Unit1.dfm</Transaction>
+    <Transaction>2022/01/13 20:17:28.000.004,C:\Users\sidne\Documents\Proj_AJX\fontes\uPrincipal.pas=C:\Users\sidne\Documents\AJX\DELPHI\Pasta Padrão de Projeto\Unit1.pas</Transaction>
+    <Transaction>2022/01/13 20:17:55.000.960,C:\Users\sidne\Documents\Proj_AJX\Clientes.dproj=C:\Users\sidne\Documents\AJX\DELPHI\Pasta Padrão de Projeto\Project1.dproj</Transaction>
     <Transaction>2022/01/18 16:32:25.000.856,=D:\Documentos\projetoAJX\Unit1.pas</Transaction>
-    <Transaction>2022/01/18 16:33:05.000.721,D:\Documentos\projetoAJX\Unit1.pas=D:\Documentos\projetoAJX\fontes\uConexaoBD.pas</Transaction>
-    <Transaction>2022/01/18 16:33:05.000.721,D:\Documentos\projetoAJX\Unit1.dfm=D:\Documentos\projetoAJX\fontes\uConexaoBD.dfm</Transaction>
-    <Transaction>2022/01/20 12:13:41.000.685,D:\Documentos\projetoAJX\Clientes.dproj=D:\Documentos\projetoAJX\fontes\Clientes.dproj</Transaction>
-    <Transaction>2022/01/20 12:22:28.000.476,D:\Documentos\projetoAJX\fontes\Clientes.dproj=D:\Documentos\projetoAJX\Clientes.dproj</Transaction>
-  </Transactions>
+    <Transaction>2022/01/18 16:33:05.000.721,D:\Documentos\projetoAJX\fontes\uConexaoBD.pas=D:\Documentos\projetoAJX\Unit1.pas</Transaction>
+    <Transaction>2022/01/18 16:33:05.000.721,D:\Documentos\projetoAJX\fontes\uConexaoBD.dfm=D:\Documentos\projetoAJX\Unit1.dfm</Transaction>
+    <Transaction>2022/01/20 12:13:41.000.685,D:\Documentos\projetoAJX\fontes\Clientes.dproj=D:\Documentos\projetoAJX\Clientes.dproj</Transaction>
+    <Transaction>2022/01/20 12:22:28.000.476,D:\Documentos\projetoAJX\Clientes.dproj=D:\Documentos\projetoAJX\fontes\Clientes.dproj</Transaction>
+    <Transaction>2022/01/22 17:00:10.000.402,=D:\Documentos\projetoAJX\Unit1.pas</Transaction>
+    <Transaction>2022/01/22 17:00:36.000.873,D:\Documentos\projetoAJX\fontes\uClientes.pas=D:\Documentos\projetoAJX\Unit1.pas</Transaction>
+  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="fontes"/>
+    <File Path="fontes\uClientes.pas"/>
+    <File Path="fontes\uConexaoBD.pas"/>
+    <File Path="fontes\uConexaoBD.dfm"/>
+    <File Path="fontes\uPrincipal.pas"/>
+    <File Path="fontes\uPrincipal.dfm"/>
+  </ProjectSortOrder>
 </BorlandProject>
